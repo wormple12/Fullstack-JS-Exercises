@@ -1,126 +1,47 @@
-3. Semester, CA3
 
-React app template project.
+# Period 1
+Mappestruktur og filnavne burde være tilstrækkeligt deskriptiv til at beskrive alt, om hvilke filer der hører til hvilke af periodens opgaver.
 
-Deployment Examples:
-=====================
-Back end deployed at: https://www.helvedesmaskine.dk/TeamOne-CA3/
+## Vanilla JavaScript, es2015/15.., Node.js, Babel + Webpack and TypeScript
+Note: This description is too big for a single exam-question. It will be divided up into a number of smaller questions for the exam
 
-Front end deployed at http://teamone-ca3-front-simon.surge.sh/
+**Explain and Reflect:**
+ - Explain the differences between Java and JavaScript and Java and node. Topics you could include:
+	- that Java is a compiled language and JavaScript a scripted language
+	- Java is both a language and a platform
+	- General differences in language features.
+	- Blocking vs. non-blocking
+- Explain generally about node.js, when it “makes sense” and npm, and how it “fits” into the node echo system.
+- Explain about the Event Loop in JavaScript, including terms like: blocking, non-blocking, event loop, callback que and "other" API's. Make sure to include why this is relevant for us as developers.
+- Explain the terms JavaScript Engine (name at least one) and JavaScript Runtime Environment (name at least two)
+- Explain (some) of the purposes with the tools Babel and WebPack and how they differ from each other. Use examples from the exercises.
 
-Open API: https://www.helvedesmaskine.dk/TeamOne-CA3/openapi/
+**Explain using sufficient code examples the following features in JavaScript (and node)**
+- Variable/function-Hoisting
+- this in JavaScript and how it differs from what we know from Java/.net.
+- Function Closures and the JavaScript Module Pattern
+- User-defined Callback Functions (writing your own functions that take a callback)
+- Explain the methods map, filter and reduce
+- Provide examples of user-defined reusable modules implemented in Node.js (learnynode - 6)
+- Provide examples and explain the es2015 features: let, arrow functions, this, rest parameters, destructuring objects and arrays, maps/sets etc.
+- Provide an example of ES6 inheritance and reflect over the differences between Inheritance in Java and in ES6.
+- Explain and demonstrate, how to implement your own events, how to emit events and how to listen for such events
 
-Group: Team One
-=======================
-Lukas Bjørnvad
+**ES6,7,8,ES-next and TypeScript**
+- Provide examples with es-next, running in a browser, using Babel and Webpack
+- Explain the two strategies for improving JavaScript: Babel and ES6 (es2015) + ES-Next, versus Typescript. What does it require to use these technologies: In our backend with Node and in (many different) Browsers
+- Provide a number of examples to demonstrate the benefits of using TypeScript, including, types, interfaces, classes and generics
+- Explain the ECMAScript Proposal Process for how new features are added to the language (the TC39 Process)
 
-Rasmus Prætorius
-https://github.com/Rasm-P
+**Callbacks, Promises and async/await**
+- Explain about (ES-6) promises in JavaScript including, the problems they solve, a quick explanation of the Promise API and:
+- Example(s) that demonstrate how to avoid the callback hell  (“Pyramid of Doom")
+- Example(s) that demonstrate how to execute asynchronous (promise-based) code in serial or parallel
+- Example(s) that demonstrate how to implement our own promise-solutions.
+- Example(s) that demonstrate error handling with promises
 
-Simon Norup
-
-Henning Wiberg
-
-Group Contract
-==================
-Respect your group members and their work. Try to avoid working on features that other members are currently working on.
-
-If you want to change other members' work, contact them and coordinate.
-
-Whenever you have made a small feature, do the following:
-
-- Test that everything works
-
-- Git add + git commit (with descriptive message)
-
-- Git pull to see if anyone else has pushed, fix possible merge conflicts
-
-- If any changes occured; begin from point 1 again
-
-- Git push
-
-- Tell other members to pull.
-
-- Always wait for other members to finish pushing before pushing a feature yourself.
-
-
-Instructions
-==================
-Preconditions:
-In order to use this code, you should have a local developer setup + a "matching" droplet on Digital Ocean as described in the 3. semester guidelines^
-
-To set up the project frontend, do the following:
-- do "npm install" and "npm install react-router-dom"
-- Change the URL in settings.js
-- to deploy the project with surge: (1) do "npm install -g surge", (2) do "npm run build", and (3) do "surge --project ./build --domain YourDomainName.surge.sh"
-
-Create-React-App Info
-=====================
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+**Explain about JavaScripts async/await, how it relates to promises and reasons to use it compared to the plain promise API.
+Provide examples to demonstrate** 
+- Why this often is the preferred way of handling promises
+- Error handling with async/await
+- Serial or parallel execution with async/await.
