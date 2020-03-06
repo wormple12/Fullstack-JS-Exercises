@@ -1,4 +1,5 @@
 require("dotenv").config(); // ENVIRONMENT VARIABLES
+const debug = require("debug")("game-case");
 import express from "express";
 import path from "path";
 const app = express();

@@ -43,5 +43,3 @@ export default class UserFacade {
     return user !== undefined && bcrypt.compareSync(password, user.password);
   }
 }
-
-//module.exports = UserFacade;
