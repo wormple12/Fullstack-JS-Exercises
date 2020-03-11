@@ -40,11 +40,13 @@ export default class UserFacade {
     UserFacade.users.push(newUser);
     return dummyReturnPromise<string>("User was added");
   }
+
   static async deleteUser(userName: string): Promise<string> {
     const newArray = UserFacade.users.filter(u => u.userName != userName);
     UserFacade.users = [...newArray];
     return dummyReturnPromise<string>("User was deleted");
   }
+
   static async getAllUsers(): Promise<Array<IGameUser>> {
     return dummyReturnPromise<Array<IGameUser>>(UserFacade.users);
   }

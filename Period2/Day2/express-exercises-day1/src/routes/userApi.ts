@@ -1,6 +1,5 @@
 import express from "express";
 import userFacade from "../facades/user";
-import basicAuth from "../middlewares/basic-auth";
 import authMiddleware from "../middlewares/basic-auth";
 import { ApiError } from "../errors/apiError";
 const router = express.Router();

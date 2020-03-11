@@ -17,9 +17,13 @@ app.use(requestLogger);
 let userAPIRouter = require("./routes/userApi");
 app.use("/api/users", userAPIRouter);
 
-app.use(errorLogger, function(err: any, req: any, res: any, next: Function) {
-  res.status(500).json(err);
+app.get("/api/dummy", (req, res) => {
+  res.json({ msg: "Hello" });
 });
+
+/* app.use(errorLogger, function(err: any, req: any, res: any, next: Function) {
+  res.status(500).json(err);
+}); */
 
 const PORT = process.env.PORT || 3333;
 const server = app.listen(PORT);
