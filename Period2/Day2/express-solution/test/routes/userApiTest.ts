@@ -25,16 +25,6 @@ describe("Test of UserAPI", () => {
   });
 
   describe("Verify the GET path /", function() {
-    /* it("test swapi", async () => {
-      await fetch("http://swapi.co/api/films/")
-        .then(res => {
-          return res.json();
-        })
-        .then(res => {
-          console.log(res);
-          expect(res.count).to.equal(7);
-        });
-    }); */
     it("should return 3 users", async function() {
       const users = await fetch(`${URL}/`).then(r => r.json());
       expect(users.length).to.equal(3);
@@ -51,7 +41,7 @@ describe("Test of UserAPI", () => {
           password: "secret",
           role: "user"
         })
-      ); //.then(r => r.json());
+      );
 
       const msg = await fetch(
         `${URL}/`,
@@ -62,15 +52,10 @@ describe("Test of UserAPI", () => {
           role: "user"
         })
       ).then(r => r.json());
-      const status = await msg.status;
-      console.log(JSON.stringify(msg));
-      console.log(JSON.stringify(status));
-      expect(status).to.equal("User was added");
+      expect(msg.status).to.equal("User was added");
 
-      const users = await fetch(`${URL}/`, makeOptions("GET")).then(r =>
-        r.json()
-      );
-      expect(users.length.to.equal(5));
+      const users = await fetch(`${URL}/`).then(r => r.json());
+      expect(users.length).to.equal(5);
     });
   });
 
@@ -80,12 +65,12 @@ describe("Test of UserAPI", () => {
         `${URL}/ole@b.dk`,
         makeOptions("DELETE")
       ).then(r => r.json());
-      expect(msg).to.equal("User was deleted");
+      expect(msg.status).to.equal("User was deleted");
 
       const users = await fetch(`${URL}/`, makeOptions("GET")).then(r =>
         r.json()
       );
-      expect(users.length.to.equal(4));
+      expect(users.length).to.equal(4);
     });
   });
 
@@ -95,7 +80,8 @@ describe("Test of UserAPI", () => {
         r.json()
       );
       expect(user.name).to.equal("kim");
-      expect(user.role).to.equal("user");
+      expect(user.role).to.be.undefined;
+      expect(user.password).to.be.undefined;
     });
     it("should username ole@b.dk throw an error", async function() {
       try {
