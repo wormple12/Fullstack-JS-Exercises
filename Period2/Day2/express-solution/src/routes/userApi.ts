@@ -15,11 +15,11 @@ router.post("/", async function(req, res, next) {
   }
 });
 
-router.use(authMiddleware);
+//router.use(authMiddleware);
 
 router.get("/:userName", async function(req: any, res, next) {
   try {
-    if (req.role != "admin") throw new ApiError("Not Authorized", 401);
+    //if (req.role != "admin") throw new ApiError("Not Authorized", 401);
     const user_Name = req.params.userName;
     const user = await userFacade.getUser(user_Name);
     const { name, userName } = user;

@@ -2,8 +2,12 @@ import UserFacade from "../../src/facades/user";
 const expect = require("chai").expect;
 
 describe("Test of UserFacade", function() {
+  after(async () => {
+    await UserFacade.deleteUser("kim@b.dk");
+  });
+
   describe("Verify the #getAllUsers()", function() {
-    it("should return 2", async function() {
+    it("should return 3 users", async function() {
       expect(await (await UserFacade.getAllUsers()).length).to.equal(3);
     });
   });

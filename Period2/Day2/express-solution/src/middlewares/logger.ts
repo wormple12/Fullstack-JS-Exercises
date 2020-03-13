@@ -49,7 +49,7 @@ let errorLoggerTransports: Array<any> = [
   })
 ];
 if (process.env.NODE_ENV !== "production") {
-  requestLoggerTransports.push(new winston.transports.Console());
+  //requestLoggerTransports.push(new winston.transports.Console());
   errorLoggerTransports.push(new winston.transports.Console());
 }
 let requestLogger = expressWinston.logger({
