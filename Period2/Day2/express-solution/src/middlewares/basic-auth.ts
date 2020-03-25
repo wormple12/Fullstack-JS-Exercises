@@ -10,7 +10,7 @@ const authMiddleware = async function(req: any, res: Response, next: Function) {
 
   try {
     if (
-      credentials ||
+      credentials &&
       (await UserFacade.checkUser(credentials.name, credentials.pass))
     ) {
       const user = await UserFacade.getUser(credentials.name);
