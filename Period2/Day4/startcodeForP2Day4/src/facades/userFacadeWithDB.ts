@@ -19,6 +19,7 @@ export default class UserFacade {
         await client.connect();
       }
       userCollection = client.db(dbName).collection("users");
+      await userCollection.createIndex({ userName: 1 }, { unique: true });
       return client.db(dbName);
     } catch (err) {
       console.error("Could not create connect", err);

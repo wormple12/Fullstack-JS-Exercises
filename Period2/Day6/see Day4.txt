@@ -1,0 +1,4 @@
+I used project "startcodeForP2_Day4"
+as the main game express solution, so far
+
+see that project for the GeoLocation MongoDB solutions for Day6
