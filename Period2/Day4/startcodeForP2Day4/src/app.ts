@@ -1,45 +1,43 @@
-require('dotenv').config();
+require("dotenv").config();
 import express from "express";
 import path from "path";
 import { ApiError } from "./errors/apiError";
 
 const app = express();
 
+app.use(express.static(path.join(process.cwd(), "public")));
 
-
-app.use(express.static(path.join(process.cwd(),"public")))
-
-
-app.use(express.json())
+app.use(express.json());
 //let userAPIRouter = require('./routes/userApi');
-let userAPIRouter = require('./routes/userApiDB');
+const userAPIRouter = require("./routes/userApiDB");
+const gameAPIRouter = require("./routes/gameAPI");
 
-
-app.use("/api/users",userAPIRouter);
+app.use("/api/users", userAPIRouter);
+app.use("/gameapi", gameAPIRouter);
 
 app.get("/api/dummy", (req, res) => {
-  res.json({ msg: "Hello" })
-})
+  res.json({ msg: "Hello" });
+});
 
 app.use(function (req, res, next) {
-  if(req.originalUrl.startsWith("/api")){
-      res.status(404).json({code:404, msg:"this API does not contanin this endpoint"})
+  if (req.originalUrl.startsWith("/api")) {
+    res
+      .status(404)
+      .json({ code: 404, msg: "this API does not contanin this endpoint" });
   }
-  next()
-})
+  next();
+});
 
-app.use(function (err:any, req:any, res:any, next:Function) {
+app.use(function (err: any, req: any, res: any, next: Function) {
   //if(err.name === "ApiError"){
-  if(err instanceof(ApiError)){
-    const e = <ApiError> err;
-    res.status(e.errorCode).send({code:e.errorCode,message:e.message})
+  if (err instanceof ApiError) {
+    const e = <ApiError>err;
+    res.status(e.errorCode).send({ code: e.errorCode, message: e.message });
   }
-  next(err)
-})
+  next(err);
+});
 
 const PORT = process.env.PORT || 3333;
-const server = app.listen(PORT)
-console.log(`Server started, listening on port: ${PORT}`)
+const server = app.listen(PORT);
+console.log(`Server started, listening on port: ${PORT}`);
 module.exports.server = server;
-
-

@@ -35,14 +35,15 @@ export default class GameFacade {
         .db(dbName)
         .collection(POSITION_COLLECTION_NAME);
 
-      //TODO
-      //1) Create expiresAfterSeconds index on lastUpdated
-      //2) Create 2dsphere index on location
+      await positionCollection.createIndex(
+        { lastUpdated: 1 },
+        { expireAfterSeconds: EXPIRES_AFTER }
+      );
+      await positionCollection.createIndex({ location: "2dsphere" });
 
-      //TODO uncomment if you plan to do this part of the exercise
-      //postCollection = client.db(dbName).collection(POST_COLLECTION_NAME);
-      //TODO If you do this part, create 2dsphere index on location
-      //await postCollection.createIndex({ location: "2dsphere" })
+      postCollection = client.db(dbName).collection(POST_COLLECTION_NAME);
+      await postCollection.createIndex({ location: "2dsphere" });
+
       return client.db(dbName);
     } catch (err) {
       console.error("Could not connect", err);
@@ -58,8 +59,10 @@ export default class GameFacade {
   ) {
     let user;
     try {
-      //Step-1. Find the user, and if found continue
-      // Use relevant methods in the user facad>
+      // Step-1. Find the user, and if found continue
+      // Use relevant methods in the user facade
+      user = await UserFacade.getUser(userName);
+      await UserFacade.checkUser(userName, password);
     } catch (err) {
       throw new ApiError("wrong username or password", 403);
     }
@@ -68,19 +71,20 @@ export default class GameFacade {
       //If loggedin update (or create if this is the first login) his position
       const point = { type: "Point", coordinates: [longitude, latitude] };
       const date = new Date();
-      //Todo
-      /*It's important you know what to do her. Remember a document for this user does
-        not neccesarily exist. If not, you must create it, in not found (see what you can do wit upsert)
-        Also remember to set a new timeStamp (use the date create above), since this document should only live for a
-        short time */
       const found = await positionCollection.findOneAndUpdate(
-        {}, //Add what we are searching for (the userName in a Position Document)
-        { $set: {} } // Add what needs to be added here, remember the document might NOT exist yet
-        //{ upsert: , returnOriginal:  }  // Figure out why you probably need to set both of these
+        { userName },
+        {
+          $set: {
+            userName,
+            name: user.name,
+            lastUpdated: date,
+            location: point
+          }
+        },
+        { upsert: true, returnOriginal: false }
       );
 
-      /* TODO 
-         By know we have updated (or created) the callers position-document
+      /* By now we have updated (or created) the callers position-document
          Next step is to see if we can find any nearby players, friends or whatever you call them
          */
       const nearbyPlayers = await GameFacade.findNearbyPlayers(
@@ -89,11 +93,12 @@ export default class GameFacade {
         distance
       );
 
-      //If anyone found,  format acording to requirements
+      //If anyone found, format acording to requirements
       const formatted = nearbyPlayers.map(player => {
         return {
-          userName: player.userName
-          // Complete this, using the requirements
+          userName: player.userName,
+          lat: latitude,
+          lon: longitude
         };
       });
       return formatted;
@@ -101,6 +106,7 @@ export default class GameFacade {
       throw err;
     }
   }
+
   static async findNearbyPlayers(
     clientUserName: string,
     point: IPoint,
@@ -111,10 +117,7 @@ export default class GameFacade {
         userName: { $ne: clientUserName },
         location: {
           $near: {
-            $geometry: {
-              type: "Point",
-              coordinates: [point.coordinates[0], point.coordinates[1]]
-            },
+            $geometry: point,
             $maxDistance: distance
           }
         }
@@ -134,8 +137,13 @@ export default class GameFacade {
       const post: IPost | null = await postCollection.findOne({
         _id: postId,
         location: {
-          $near: {}
-          // Todo: Complete this
+          $near: {
+            $geometry: {
+              type: "Point",
+              coordinates: [lon, lat]
+            },
+            $maxDistance: this.DIST_TO_CENTER
+          }
         }
       });
       if (post === null) {

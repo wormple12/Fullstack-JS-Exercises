@@ -10,9 +10,11 @@ const latOutside = 55.772780384609256 + ((DISTANCE_TO_CENTER + 1) / 111337.6487)
 */
 
 function getLatitudeInside(latitude: number, radius: number) {
+  // 1 meter inside
   return latitude + (radius - 1) / 111337.6487;
 }
 function getLatitudeOutside(latitude: number, radius: number) {
+  // 1 meter outside
   return latitude + (radius + 1) / 111337.6487;
 }
 
