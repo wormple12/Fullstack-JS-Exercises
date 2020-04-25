@@ -42,6 +42,7 @@ Note: This description is too big for a single exam-question. It will be divided
 	- Set up proxy redirect (see nginxProxyInfo document).
 	- Install required packages ("sudo npm install") and transpile typescript code ("sudo npm run build").
 	- Start server with process manager, and set up automatic reboot on error ("sudo pm2 startup" + follow given instructions if any) and on changes ("pm2 start ./build/app.js --watch --ignore-watch="node_modules" --name MyAppName").
+	- Run "sudo reboot".
 - Which of the Express Production best practices you have followed?
 	- **To do:** Deploy a project where you actually follow all the practices.
 	- Nginx reverse proxy (should do compression on that level automatically). (according to the Best Practices site).
