@@ -1,4 +1,6 @@
-**How to deploy a Node.js/Express app:**
+How to deploy a Node.js/Express app:
+===============================
+
 - Explain, preferably using an example, how you have deployed your Node/Express applications.
 	- Create a Node.js droplet on Digital Ocean -- with HTTPS and non-root user as normal (see Digital Ocean Setup document).
 	- Create a new Domain DNS record for your project that redirects to your droplet.
@@ -13,7 +15,7 @@
 .env Setup
 ======================
 
-## first thing you should do is to create af file `.env` in the root of the project with this content
+#### first thing you should do is to create af file `.env` in the root of the project with this content
 
 CONNECTION=YOUR_CONNECTION_STRING_TO_ATLAS
 
