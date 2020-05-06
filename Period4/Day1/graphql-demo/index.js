@@ -3,8 +3,10 @@ import graphqlHTTP from "express-graphql";
 import { schema } from "./data/schema";
 import path from "path";
 require("dotenv").config({ path: path.join(process.cwd(), ".env") });
+import cors from "cors";
 
 const app = express();
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("GraphQL is amazing!");

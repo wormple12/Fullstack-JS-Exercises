@@ -3,13 +3,11 @@ import { Friends } from "./dbConnectors";
 // resolver map
 export const resolvers = {
   Query: {
-    getFriend: async (root, { id }) => {
-      const result = await Friends.findOne({ _id: id });
-      return result;
+    getFriend: (root, { id }) => {
+      return Friends.findOne({ _id: id });
     },
-    getFriends: async () => {
-      const result = await Friends.find();
-      return result;
+    getFriends: () => {
+      return Friends.find();
     },
   },
   Mutation: {

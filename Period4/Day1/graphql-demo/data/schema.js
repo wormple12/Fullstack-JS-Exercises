@@ -26,7 +26,7 @@ enum Gender{
 
 type Query{
     getFriend(id: ID!): Friend
-    getFriends: [Friend]
+    getFriends: [Friend]!
 }
 
 input FriendInput{
