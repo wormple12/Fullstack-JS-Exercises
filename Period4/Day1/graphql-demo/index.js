@@ -5,6 +5,8 @@ import path from "path";
 require("dotenv").config({ path: path.join(process.cwd(), ".env") });
 
 const app = express();
+import cors from "cors";
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("GraphQL is amazing!");
@@ -14,11 +16,9 @@ app.use(
   "/graphql",
   graphqlHTTP({
     schema: schema,
-    graphiql: true,
+    graphiql: true
   })
 );
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () =>
-  console.log(`Running server on port localhost:${PORT}/graphql`)
-);
+app.listen(PORT, () => console.log(`Running server on port localhost:${PORT}/graphql`));
