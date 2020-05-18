@@ -1,6 +1,11 @@
 import React from "react";
 import "../App.css";
-import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from "react-router-dom";
 
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
@@ -9,11 +14,11 @@ import AllFriends from "./AllFriends";
 import FindFriend from "./FindFriend";
 import Home from "./Home";
 
-const URI = "http://localhost:5555/graphql";
-//const URI = "http://63db3b33.ngrok.io/graphql"
+const URI = "https://graphqldemo.helvedesmaskine.dk/graphql";
+//const URI = "http://localhost:5555/graphql";
 
 const client = new ApolloClient({
-  uri: URI
+  uri: URI,
 });
 
 export default function App() {
