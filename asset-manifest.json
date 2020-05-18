@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Fullstack-JS-Exercises/static/css/main.fcad1ae8.chunk.css",
+    "main.js": "/Fullstack-JS-Exercises/static/js/main.de05c74d.chunk.js",
+    "main.js.map": "/Fullstack-JS-Exercises/static/js/main.de05c74d.chunk.js.map",
+    "runtime-main.js": "/Fullstack-JS-Exercises/static/js/runtime-main.237d8c5d.js",
+    "runtime-main.js.map": "/Fullstack-JS-Exercises/static/js/runtime-main.237d8c5d.js.map",
+    "static/js/2.9a8e495a.chunk.js": "/Fullstack-JS-Exercises/static/js/2.9a8e495a.chunk.js",
+    "static/js/2.9a8e495a.chunk.js.map": "/Fullstack-JS-Exercises/static/js/2.9a8e495a.chunk.js.map",
+    "index.html": "/Fullstack-JS-Exercises/index.html",
+    "precache-manifest.3b2176034674fdb8d5821e3f82452bf7.js": "/Fullstack-JS-Exercises/precache-manifest.3b2176034674fdb8d5821e3f82452bf7.js",
+    "service-worker.js": "/Fullstack-JS-Exercises/service-worker.js",
+    "static/css/main.fcad1ae8.chunk.css.map": "/Fullstack-JS-Exercises/static/css/main.fcad1ae8.chunk.css.map",
+    "static/js/2.9a8e495a.chunk.js.LICENSE.txt": "/Fullstack-JS-Exercises/static/js/2.9a8e495a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.237d8c5d.js",
+    "static/js/2.9a8e495a.chunk.js",
+    "static/css/main.fcad1ae8.chunk.css",
+    "static/js/main.de05c74d.chunk.js"
+  ]
+}
