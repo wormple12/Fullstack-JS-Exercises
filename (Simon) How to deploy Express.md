@@ -9,8 +9,9 @@ How to deploy a Node.js/Express app:
 	- Set up environment variables in project folder ("sudo nano .env" -> see envSetup document).
 	- Set up proxy redirect (see nginxProxyInfo document).
 	- Install required packages ("sudo npm install") and transpile typescript code ("sudo npm run build").
-	- Start server with process manager, and set up automatic reboot on error ("sudo pm2 startup" + follow given instructions if any) and on changes ("pm2 start ./build/app.js --watch --ignore-watch="node_modules" --name MyAppName").
+	- Start server with process manager, and set up automatic reboot on error ("sudo pm2 startup" + follow given instructions if any) and on changes ("sudo pm2 start ./build/app.js --watch --ignore-watch="node_modules" --name MyAppName").
 	- Run "sudo reboot".
+	- Set up Certbot: https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx
 
 
 .env Setup
@@ -22,7 +23,7 @@ CONNECTION=YOUR_CONNECTION_STRING_TO_ATLAS
 
 DB_NAME=semester_case
 
-PORT=5555
+PORT=YOUR_PORT_NUMBER_EXAMPLE_5555
 
 DEBUG=game-project
 
@@ -36,18 +37,18 @@ Nginx Proxy Info
 
 **Snippet:**
 
-server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
+	server {
+		listen 80 default_server;
+		listen [::]:80 default_server;
 
-	server_name ?hostNameForDigitalOceanDNSRecord?;
+		server_name ?hostNameForDigitalOceanDNSRecord?;
 
-	location / {
-		proxy_pass http://localhost:?portNumberDefinedInEnvFile?;
-		proxy_http_version 1.1;
-		proxy_set_header Upgrade $http_upgrade;
-		proxy_set_header Connection 'upgrade';
-		proxy_set_header Host $host;
-		proxy_cache_bypass $http_upgrade;
+		location / {
+			proxy_pass http://localhost:?portNumberDefinedInEnvFile?;
+			proxy_http_version 1.1;
+			proxy_set_header Upgrade $http_upgrade;
+			proxy_set_header Connection 'upgrade';
+			proxy_set_header Host $host;
+			proxy_cache_bypass $http_upgrade;
+		}
 	}
-}
