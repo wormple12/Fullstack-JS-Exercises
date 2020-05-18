@@ -5,13 +5,11 @@ An introduction to GraphQL development with ReactJS.
 Mappestruktur og filnavne burde være tilstrækkeligt deskriptiv til at beskrive alt, om hvilke filer der hører til hvilke af periodens opgaver.
 
 ### Progress
-1. Friends-projektet er ikke deployed.
-2. Teamfinder-projektet er ikke opdateret til GraphQL udover User API'en, og UserAPI er ikke deployed.
-
-Jeg arbejder på sagen, og prøver virkelig at få deployment ordnet mandag d. 18/05. Denne side opdateres løbende.
+Teamfinder-projektet er ikke opdateret til GraphQL udover User API'en, og UserAPI er ikke deployed.
+Derudover skulle alt gerne være færdigt.
 
 ### Backend API
-???
+https://graphqldemo.helvedesmaskine.dk/graphql
 
 ## Exam Questions
 Note: This description is too big for a single exam-question. It will be divided up into separate questions for the exam.
