@@ -1,6 +1,7 @@
 How to deploy a Node.js/Express app:
 ===============================
 
+- See https://www.youtube.com/playlist?list=PLDbigcKhXkiW3w8RQ25QRwJD5OhuTj8HU, if in doubt.
 - Explain, preferably using an example, how you have deployed your Node/Express applications.
 	- Create a Node.js droplet on Digital Ocean -- with HTTPS and non-root user as normal (see Digital Ocean Setup document).
 	- Create a new Domain DNS record for your project that redirects to your droplet.
