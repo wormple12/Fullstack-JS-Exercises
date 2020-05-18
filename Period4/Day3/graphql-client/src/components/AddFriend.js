@@ -24,13 +24,29 @@ const ADD_FRIEND = gql`
     }
   }
 `;
+const UPDATE_FRIEND = gql`
+  mutation updateFriend($input: FriendInput!) {
+    updateFriend(input: $input) {
+      id
+      firstName
+      lastName
+      gender
+      age
+    }
+  }
+`;
 
 const AddFriend = ({ initialFriend, allowEdit }) => {
-  const EMPTY_FRIEND = { firstName: "", lastName: "", gender: "OTHER", age: "", email: "" };
+  const EMPTY_FRIEND = {
+    firstName: "",
+    lastName: "",
+    gender: "OTHER",
+    age: "",
+    email: "",
+  };
   let newFriend = initialFriend ? initialFriend : { ...EMPTY_FRIEND };
 
   const [friend, setFriend] = useState({ ...newFriend });
-  const [readOnly, setReadOnly] = useState(!allowEdit);
 
   const [createFriend, { data }] = useMutation(ADD_FRIEND, {
     update(cache, { data }) {
@@ -39,30 +55,48 @@ const AddFriend = ({ initialFriend, allowEdit }) => {
       getFriends.push(newFriend);
       cache.writeQuery({
         query: ALL_FRIENDS,
-        data: { getFriends: [...getFriends] }
+        data: { getFriends: [...getFriends] },
       });
-    }
+    },
   });
 
-  const handleChange = event => {
+  const [updateFriend] = useMutation(UPDATE_FRIEND, {
+    update(cache, { data }) {
+      const newFriend = data.updateFriend;
+      const { getFriends } = cache.readQuery({ query: ALL_FRIENDS });
+      const index = getFriends.findIndex((friend) => friend.id == newFriend.id);
+      getFriends[index] = newFriend;
+      cache.writeQuery({
+        query: ALL_FRIENDS,
+        data: { getFriends: [...getFriends] },
+      });
+    },
+  });
+
+  const handleChange = (event) => {
     const id = event.target.id;
     friend[id] = event.target.value;
     setFriend({ ...friend });
   };
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    createFriend({
-      variables: {
-        input: {
-          //id: friend.id, (NEEDED FOR EDITFRIEND)
-          firstName: friend.firstName,
-          lastName: friend.lastName,
-          email: friend.email,
-          age: Number(friend.age),
-          gender: friend.gender
-        }
-      }
-    });
+    const input = {
+      id: friend.id,
+      firstName: friend.firstName,
+      lastName: friend.lastName,
+      email: friend.email,
+      age: Number(friend.age),
+      gender: friend.gender,
+    };
+    if (!initialFriend) {
+      createFriend({
+        variables: { input },
+      });
+    } else {
+      updateFriend({
+        variables: { input },
+      });
+    }
     setFriend({ ...EMPTY_FRIEND });
   };
 
@@ -71,17 +105,34 @@ const AddFriend = ({ initialFriend, allowEdit }) => {
       <label>
         FirstName
         <br />
-        <input type="text" readOnly={readOnly} id="firstName" value={friend.firstName} onChange={handleChange} />
+        <input
+          type="text"
+          readOnly={!allowEdit}
+          id="firstName"
+          value={friend.firstName}
+          onChange={handleChange}
+        />
       </label>
       <br />
       <label>
         LastName <br />
-        <input readOnly={readOnly} type="text" id="lastName" value={friend.lastName} onChange={handleChange} />
+        <input
+          readOnly={!allowEdit}
+          type="text"
+          id="lastName"
+          value={friend.lastName}
+          onChange={handleChange}
+        />
       </label>
       <br />
       <label>
         Gender &nbsp;
-        <select disabled={readOnly} id="gender" value={friend.gender} onChange={handleChange}>
+        <select
+          disabled={!allowEdit}
+          id="gender"
+          value={friend.gender}
+          onChange={handleChange}
+        >
           <option value="MALE">Male</option>
           <option value="FEMALE">Female</option>
           <option value="OTHER">Other</option>
@@ -90,11 +141,17 @@ const AddFriend = ({ initialFriend, allowEdit }) => {
       <br />
       <label>
         Age <br />
-        <input readOnly={readOnly} type="number" id="age" value={friend.age} onChange={handleChange} />
+        <input
+          readOnly={!allowEdit}
+          type="number"
+          id="age"
+          value={friend.age}
+          onChange={handleChange}
+        />
       </label>
       <br />
       <br />
-      {!readOnly && <input type="submit" value="Submit" />}
+      {allowEdit && <input type="submit" value="Submit" />}
     </form>
   );
 };

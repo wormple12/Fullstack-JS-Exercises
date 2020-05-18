@@ -19,6 +19,7 @@ const GET_FRIEND = gql`
 
 export default function FindFriend() {
   const [id, setId] = useState("");
+  const [allowEdit, setAllowEdit] = useState(false);
   const [getFriend, { loading, error, data }] = useLazyQuery(GET_FRIEND);
 
   const fetchFriend = () => {
@@ -26,6 +27,7 @@ export default function FindFriend() {
       return;
     }
     getFriend({ variables: { id } });
+    setAllowEdit(false);
   };
 
   return (
@@ -34,7 +36,7 @@ export default function FindFriend() {
       <input
         type="txt"
         value={id}
-        onChange={e => {
+        onChange={(e) => {
           setId(e.target.value);
         }}
       />
@@ -43,7 +45,14 @@ export default function FindFriend() {
       <br />
       {loading && <h2>Loading...</h2>}
       {error && <h2>Error while fetching friend...</h2>}
-      {data && <AddFriend initialFriend={data.getFriend} />}
+      {data && (
+        <div>
+          <AddFriend initialFriend={data.getFriend} allowEdit={allowEdit} />
+          <button onClick={() => setAllowEdit(!allowEdit)}>
+            Toggle Editing
+          </button>
+        </div>
+      )}
     </div>
   );
 }

@@ -5,9 +5,8 @@ An introduction to GraphQL development with ReactJS.
 Mappestruktur og filnavne burde være tilstrækkeligt deskriptiv til at beskrive alt, om hvilke filer der hører til hvilke af periodens opgaver.
 
 ### Progress
-1. Der mangler Update-funktionalitet i Friends-klienten.
-2. Friends-projektet er ikke deployed.
-3. Teamfinder-projektet er ikke opdateret til GraphQL udover User API'en, og UserAPI er ikke deployed.
+1. Friends-projektet er ikke deployed.
+2. Teamfinder-projektet er ikke opdateret til GraphQL udover User API'en, og UserAPI er ikke deployed.
 
 Jeg arbejder på sagen, og prøver virkelig at få deployment ordnet mandag d. 18/05. Denne side opdateres løbende.
 
@@ -43,7 +42,7 @@ Note: This description is too big for a single exam-question. It will be divided
 - Provide a number of examples demonstrating; creating, updating and deleting with Mutations. You should provide examples both running in a Sandbox/playground and examples executed in an Apollo Client.
 	- Sandbox Environment: Run graphql-demo, and open localhost:5555/graphql.
 	- Creating: See graphql-client -> AddFriend.js
-	- Updating: **??? TO DO ???**
+	- Updating: See graphql-client -> AddFriend.js
 	- Deleting: See graphql-client -> AllFriends.js
 - Explain the Concept of a Resolver function, and provide a number of simple examples of resolvers you have implemented in a GraphQL Server.
 	- Where the schema describes all of the fields, arguments, and result types, the resolvers are functions that are called to actually execute the functionality of a query/mutation. It has the responsiblity to *do* (receive data and return data), where the schema *defines* (what kind of data should be received and returned).
