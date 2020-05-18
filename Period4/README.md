@@ -6,10 +6,14 @@ Mappestruktur og filnavne burde være tilstrækkeligt deskriptiv til at beskrive
 
 ### Progress
 Teamfinder-projektet er ikke opdateret til GraphQL udover User API'en, og UserAPI er ikke deployed.
-Derudover skulle alt gerne være færdigt.
+Derudover skulle alt gerne være færdigt. Se deployments herunder.
 
-### Backend API
-https://graphqldemo.helvedesmaskine.dk/graphql
+### Deployments & Links
+**GraphQL Friend API:** https://graphqldemo.helvedesmaskine.dk/graphql
+
+**GraphQL Friend Client:** https://wormple12.github.io/Fullstack-JS-Exercises/
+
+**GraphQL version of the Teamfinder User API:** https://github.com/wormple12/Fullstack-JS-GameAPI/blob/master/src/routes/graphqlAPI.ts
 
 ## Exam Questions
 Note: This description is too big for a single exam-question. It will be divided up into separate questions for the exam.
