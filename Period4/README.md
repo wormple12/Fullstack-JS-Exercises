@@ -5,7 +5,7 @@ An introduction to GraphQL development with ReactJS.
 Mappestruktur og filnavne burde være tilstrækkeligt deskriptiv til at beskrive alt, om hvilke filer der hører til hvilke af periodens opgaver.
 
 ### Progress
-Teamfinder-projektet er ikke opdateret til GraphQL udover User API'en, og UserAPI er ikke deployed.
+Teamfinder-projektet er ikke opdateret til GraphQL udover User API'en, og UserAPI med GraphQL er ikke deployed.
 Derudover skulle alt gerne være færdigt. Se deployments herunder.
 
 ### Deployments & Links
